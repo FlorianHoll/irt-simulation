@@ -22,13 +22,22 @@ simulate_irt <- function(
   results = list()
 
   # Simulate person abilities (draw from normal distribution)
-  thetas = rnorm(n=nr_persons*nr_dimensions, mean=0, sd=2) %>% matrix(nrow=nr_persons)
+  thetas = (
+    rnorm(n=nr_persons*nr_dimensions, mean=0, sd=2) %>% 
+      matrix(nrow=nr_persons)
+  )
 
   # Simulate item easiness parameters (draw from normal distribution)
   deltas = rnorm(n=nr_items, mean=0, sd=2)
 
   # Simulate item discrimination parameters (draw from gamma distribution)
-  alphas = rgamma(n=nr_items*nr_dimensions, shape=2, rate=1) %>% matrix(ncol=nr_dimensions)
+  factors = sample(nr_dimensions, nr_items, replace=TRUE)
+  
+  
+  alphas = (
+    rgamma(n=nr_items*nr_dimensions, shape=2, rate=1) %>% 
+      matrix(ncol=nr_dimensions)
+  )
 
   probabilities = multidimensional_irt(alphas, deltas, thetas)
   simulated_data = simulate_irt_data(probabilities)

@@ -56,6 +56,9 @@ simulate_irt_data <- function(probability_matrix) {
   N = dim(probability_matrix)[1]
   M = dim(probability_matrix)[2]
   
-  results <- rbinom(n=N*M, size=1, prob=probability_matrix) %>% matrix(ncol=M)
+  results <- (
+    rbinom(n=N*M, size=1, prob=probability_matrix) %>% 
+      matrix(ncol=M)
+  )
   return(results)
 }
