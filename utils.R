@@ -98,13 +98,34 @@ simulate_alphas <- function(nr_items, nr_dimensions, factor_loadings) {
 create_model_syntax <- function(nr_items, nr_dimensions, factor_loadings) {
   model_syntax <- paste0("G=1-", nr_items)
 
-  for (i in 1:nr_dimensions) {
-    model_syntax <- paste0(
-      model_syntax, "\nF", i, "=", str_flatten(
-        factor_loadings[[i]],
-        collapse = ","
+  if (nr_dimensions > 1) {
+    for (i in 1:nr_dimensions) {
+      model_syntax <- paste0(
+        model_syntax, "\nF", i, "=", str_flatten(
+          factor_loadings[[i]],
+          collapse = ","
+        )
       )
-    )
+    }
+  }
+  
+  
+  model_syntax <- (
+    paste0(model_syntax, "\nPRIOR=(1-", nr_items, ", a1, lnorm, 1, 1)")
+  )
+  if (nr_dimensions > 1) {
+    for (i in 1:nr_dimensions) {
+      model_syntax <- paste0(
+        model_syntax, ", (", 
+        str_flatten(
+          factor_loadings[[i]],
+          collapse = ","
+        ),
+        ", a",
+        i+1,
+        ", lnorm, 1, 1)"
+      )
+    }
   }
 
   return(mirt::mirt.model(model_syntax))
