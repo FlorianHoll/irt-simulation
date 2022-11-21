@@ -90,12 +90,15 @@ simulate_alphas <- function(nr_items, nr_dimensions, factor_loadings) {
 #' @param factor_loadings The factor loadings (a list with each index 
 #'                        containing the item indezes for each factor 
 #'                        respectively).
+#' @param priors Boolean: Set priors on the alpha parameters? Defaults to True.
 #'
 #' @return The model syntax as a mirt::mirt.model object, ready to be 
 #'         passed to the mirt::mirt command.
 #'
 #' @examples
-create_model_syntax <- function(nr_items, nr_dimensions, factor_loadings) {
+create_model_syntax <- function(
+    nr_items, nr_dimensions, factor_loadings, priors = TRUE
+) {
   model_syntax <- paste0("G=1-", nr_items)
 
   if (nr_dimensions > 1) {
@@ -109,24 +112,28 @@ create_model_syntax <- function(nr_items, nr_dimensions, factor_loadings) {
     }
   }
   
-  
-  model_syntax <- (
-    paste0(model_syntax, "\nPRIOR=(1-", nr_items, ", a1, lnorm, 1, 1)")
-  )
-  if (nr_dimensions > 1) {
-    for (i in 1:nr_dimensions) {
-      model_syntax <- paste0(
-        model_syntax, ", (", 
-        str_flatten(
-          factor_loadings[[i]],
-          collapse = ","
-        ),
-        ", a",
-        i+1,
-        ", lnorm, 1, 1)"
-      )
+  if (priors) {
+    # Add priors to the model syntax.
+    model_syntax <- (
+      paste0(model_syntax, "\nPRIOR=(1-", nr_items, ", a1, lnorm, 1, 1)")
+    )
+    
+    # Factor-specific priors.
+    if (nr_dimensions > 1) {
+      for (i in 1:nr_dimensions) {
+        model_syntax <- paste0(
+          model_syntax, ", (", 
+          str_flatten(
+            factor_loadings[[i]],
+            collapse = ","
+          ),
+          ", a",
+          i+1,
+          ", lnorm, 1, 1)"
+        )
+      }
     }
   }
-
+  
   return(mirt::mirt.model(model_syntax))
 }
