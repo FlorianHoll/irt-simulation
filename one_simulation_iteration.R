@@ -15,7 +15,8 @@ source("multidimensional_irt.R")
 #' @param nr_items The number of items that the simulated test shall have.
 #'                 Defaults to 20.
 #' @param nr_dimensions The number of dimensions of the simulated model.
-#' @param model_type The model type, i.e. "Rasch" or "2PL".
+#' @param model_type The model type, i.e. "Rasch" or "2PL". Defaults to "2PL."
+#' @param priors Boolean: Use priors on the alpha parameters? Defaults to TRUE.
 #'
 #' @return A matrix of size nr_items x nr_dimensions+1 representing
 #'         the deviations of the estimated from the true parameters.
@@ -25,18 +26,19 @@ simulate_one_iteration <- function(
     nr_persons = 1000,
     nr_items = 20,
     nr_dimensions = 3,
-    model_type = "2PL"
+    model_type = "2PL",
+    priors = TRUE
   ) {
 
   # Simulate person abilities (draw from normal distribution)
   thetas <- (
-    rnorm(n = nr_persons * (nr_dimensions + 1), mean = 0, sd = 2) %>%
+    rnorm(n = nr_persons * (nr_dimensions + 1), mean = 0, sd = 1) %>%
       matrix(nrow = nr_persons, ncol = nr_dimensions + 1)
   )
 
   # Simulate item easiness parameters (draw from normal distribution)
-  deltas <- rnorm(n = nr_items, mean = 0, sd = 2)
-  deltas <- -deltas * rgamma(nr_items, shape = 2, rate = 1)
+  deltas <- rnorm(n = nr_items, mean = 0, sd = 1)
+  deltas <- -deltas * rnorm(nr_items, 1, .2)
 
   # Simulate item discrimination parameters (draw from gamma distribution)
   factor_loadings <- simulate_factors(nr_items, nr_dimensions)
@@ -46,17 +48,23 @@ simulate_one_iteration <- function(
   probabilities <- multidimensional_irt(alphas, deltas, thetas)
   simulated_data <- simulate_irt_data(probabilities)
 
+  print(table(simulated_data))
+  
   # Estimate the model.
-  model_syntax <- create_model_syntax(nr_items, nr_dimensions, factor_loadings)
+  model_syntax <- create_model_syntax(
+    nr_items, nr_dimensions, factor_loadings, priors
+  )
+  estimation_algorithm <- ifelse(nr_dimensions >= 3, "QMCEM", "EM")
   model <- mirt::mirt(
     data = as.data.frame(simulated_data),
     model = model_syntax,
-    itemtype = model_type
+    itemtype = model_type,
+    method = estimation_algorithm
   )
 
   # Calculate differences between the estimated and true values.
-  true_parameters <- cbind(alphas, deltas) %>% as.data.frame()
-  names(true_parameters) <- c(paste0("a", 1:nr_items), "d")
+  true_parameters <- cbind(alphas, deltas) %>% as.data.frame
+  names(true_parameters) <- c(paste0("a", 1:(nr_dimensions + 1)), "d")
   estimated_parameters <- (
     coef(model, simplify = T)$items %>%
       as.data.frame() %>%
