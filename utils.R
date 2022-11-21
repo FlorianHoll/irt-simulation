@@ -90,14 +90,14 @@ simulate_alphas <- function(nr_items, nr_dimensions, factor_loadings) {
 #' @param factor_loadings The factor loadings (a list with each index 
 #'                        containing the item indezes for each factor 
 #'                        respectively).
-#' @param priors Boolean: Set priors on the alpha parameters? Defaults to True.
+#' @param priors Boolean: Set priors on the alpha parameters?
 #'
 #' @return The model syntax as a mirt::mirt.model object, ready to be 
 #'         passed to the mirt::mirt command.
 #'
 #' @examples
 create_model_syntax <- function(
-    nr_items, nr_dimensions, factor_loadings, priors = TRUE
+    nr_items, nr_dimensions, factor_loadings, priors
 ) {
   model_syntax <- paste0("G=1-", nr_items)
 
