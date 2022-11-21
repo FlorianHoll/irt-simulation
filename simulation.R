@@ -19,9 +19,16 @@ params <- yaml::read_yaml(filename)
 parameters <- params[[simulation_name]]  # parameters are stored as a list
 
 # start the parallelized for loop
+if (
+  !(foreach::getDoParRegistered()) | 
+  (foreach::getDoParWorkers() <= 1)
+) {
+  warning("Only one CPU node is used.")
+}
+
 final_results <- (
   foreach::foreach(
-    i = 1:nr_iterations,
+    i = 1:3,
     .packages = c("mirt", "tidyverse")
   ) %dopar% {  # parallel processing
     do.call(simulate_one_iteration, parameters)
@@ -31,5 +38,5 @@ stopCluster(cl)
 
 # save simulation results to results folder.
 dir.create("./results")
-filename = paste0("./results/results_", simulation_name, ".Rds")
+filename <- paste0("./results/results_", simulation_name, ".Rds")
 saveRDS(final_results, file = filename)
