@@ -71,7 +71,7 @@ simulate_alphas <- function(nr_items, nr_dimensions, factor_loadings) {
     alphas <- matrix(0.0, nrow = nr_items, ncol = nr_dimensions + 1)
     alphas[, 1] <- rgamma(nr_items, shape = 2, rate = 1)
 
-    for (i in 2:5) {
+    for (i in 2:(nr_dimensions+1)) {
       idz <- factor_loadings[[i - 1]]
       alphas[idz, i] <- rgamma(length(idz), shape = 2, rate = 1)
     }
