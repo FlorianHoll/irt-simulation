@@ -18,7 +18,7 @@ source("multidimensional_irt.R")
 #' @param nr_dimensions The number of dimensions of the simulated model.
 #' @param model_type The model type, i.e. "Rasch" or "2PL".
 #'
-#' @return A matrix of size nr_items x nr_dimensions+1 representing 
+#' @return A matrix of size nr_items x nr_dimensions+1 representing
 #'         the deviations of the estimated from the true parameters.
 #'
 #' @examples
