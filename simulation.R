@@ -16,9 +16,10 @@ simulation_name <- as.double(args[2])
 
 # read in the .yml file containing the simulation parameters
 params <- yaml::read_yaml(filename)
-parameters <- params[[simulation_name]]  # parameters are stored as a list
+nr_iterations <- params[[simulation_name]][["nr_iterations"]]
+parameters <- params[[simulation_name]][["params"]]
 
-# start the parallelized for loop
+# start simulations in a parallelized for loop
 if (
   !(foreach::getDoParRegistered()) | 
   (foreach::getDoParWorkers() <= 1)
@@ -28,7 +29,7 @@ if (
 
 final_results <- (
   foreach::foreach(
-    i = 1:3,
+    i = 1:nr_iterations,
     .packages = c("mirt", "tidyverse")
   ) %dopar% {  # parallel processing
     do.call(simulate_one_iteration, parameters)
