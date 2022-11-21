@@ -1,0 +1,25 @@
+simulation1:
+  nr_iterations: 50
+  params:
+    nr_items: 20
+    nr_dimensions: 3
+    nr_persons: 2000
+    model_type: 2PL
+
+simulation2:
+  nr_items: 40
+  nr_dimensions: 4
+  nr_persons: 200
+  model_type: 2PL
+
+Simulation 3:
+  nr_items: 20
+  nr_dimensions: 4
+  nr_persons: 300
+  model_type: 2PL
+
+Simulation 4:
+  nr_items: 20
+  nr_dimensions: 4
+  nr_persons: 400
+  model_type: 2PL
