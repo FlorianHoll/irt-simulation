@@ -1,0 +1,322 @@
+simulation1:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 1.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation2:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 1.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation3:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 1.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation4:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 1.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation6:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 2.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation7:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 2.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation8:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 2.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation10:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 3.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation11:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 3.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation12:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 3.0
+    nr_persons: 50.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation13:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 1.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation14:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 1.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation15:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 1.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation16:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 1.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation17:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 2.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation18:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 2.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation19:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 2.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation20:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 2.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation21:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 3.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation22:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 3.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation23:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 3.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation24:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 3.0
+    nr_persons: 100.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation25:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 1.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation26:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 1.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation27:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 1.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation28:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 1.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation29:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 2.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation30:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 2.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation31:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 2.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation32:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 2.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation33:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 3.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation34:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 3.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation35:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 3.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation36:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 3.0
+    nr_persons: 200.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation37:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 1.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation38:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 1.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation39:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 1.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation40:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 1.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation41:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 2.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation42:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 2.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation43:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 2.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation44:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 2.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation45:
+  params:
+    nr_items: 5.0
+    nr_dimensions: 3.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation46:
+  params:
+    nr_items: 10.0
+    nr_dimensions: 3.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation47:
+  params:
+    nr_items: 20.0
+    nr_dimensions: 3.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
+simulation48:
+  params:
+    nr_items: 40.0
+    nr_dimensions: 3.0
+    nr_persons: 1000.0
+    model_type: 2PL
+  nr_iterations: 40.0
