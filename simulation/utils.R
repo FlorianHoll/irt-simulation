@@ -35,11 +35,10 @@ simulate_factors <- function(nr_items, nr_dimensions) {
 #' Simulate alpha parameters while taking the factor loadings into account.
 #'
 #' An item has a loading of 0 onto a factor whenever it is not part of that
-#' factor.
-#'
-#'
-#'
-#'
+#' factor and a loading between 0 and infinity if it is part of that factor.
+#' If the number of nr_dimensions == 1, all items load only onto the so-called 
+#' G factor. If nr_dimensions > 1, then all items load both onto the  
+#' G factor as well as onto nr_dimensions subfactors. 
 #'
 #' @param nr_items The number of items.
 #' @param nr_dimensions The number of dimensions.
@@ -79,6 +78,27 @@ simulate_alphas <- function(nr_items, nr_dimensions, factor_loadings) {
 
   return(alphas)
 }
+
+#' Simulate thetas, i.e. ability parameters for all persons.
+#'
+#' @param nr_persons The number of persons to simulate thetas for.
+#' @param nr_dimensions The number of dimensions.
+#'
+#' @return The simulated thetas.
+#'
+#' @examples
+simulate_thetas <- function(nr_persons, nr_dimensions) {
+  
+  nr_theta_factors <- ifelse(nr_dimensions == 1, nr_dimensions, nr_dimensions+1)
+
+  thetas <- (
+    rnorm(n = nr_persons * nr_theta_factors, mean = 0, sd = 1) %>%
+      matrix(nrow = nr_persons, ncol = nr_theta_factors)
+  )
+  
+  return(thetas)
+}
+
 
 #' Create the model syntax to be passed to the mirt::mirt command.
 #'
