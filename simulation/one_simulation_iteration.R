@@ -30,6 +30,8 @@ simulate_one_iteration <- function(
     priors = TRUE
   ) {
 
+  priors <- as.logical(priors)
+
   # Simulate person abilities (draw from normal distribution)
   thetas <- simulate_thetas(nr_persons, nr_dimensions)
   
