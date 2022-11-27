@@ -36,23 +36,27 @@ for (simulation in names(params)[run_from : run_to]) {
   nr_iterations <- params[[simulation]][["nr_iterations"]]
   parameters <- params[[simulation]][["params"]]
 
-  cat(paste("\n\nRunning", simulation, "with", nr_iterations, 
+  # Ensure that dimensions can be built with the number of items.
+  if (parameters$nr_items >= (3 * parameters$nr_dimensions)) {
+    
+    cat(paste("\n\nRunning", simulation, "with", nr_iterations, 
       "iterations and the following parameters:\n"))
-  cat(paste0(names(parameters), ": ", parameters, "; "))
+    cat(paste0(names(parameters), ": ", parameters, "; "))
 
-  # run simulation
-  final_results <- (
-    foreach::foreach(
-      i = 1:nr_iterations,
-      .packages = c("mirt", "tidyverse")
-    ) %dopar% {  # parallel processing
-      do.call(simulate_one_iteration, parameters)
-    }
-  )
-  
-  # save simulation results to results folder.
-  dir.create("./results")
-  filename <- paste0("./results/results_", simulation, ".Rds")
-  saveRDS(final_results, file = filename)
+    # run simulation
+    final_results <- (
+      foreach::foreach(
+        i = 1:nr_iterations,
+        .packages = c("mirt", "tidyverse")
+      ) %dopar% {  # parallel processing
+        do.call(simulate_one_iteration, parameters)
+      }
+    )
+    
+    # save simulation results to results folder.
+    dir.create("./results")
+    filename <- paste0("./results/results_", simulation, ".Rds")
+    saveRDS(final_results, file = filename)
+  }
   
 }
