@@ -2,9 +2,10 @@ library(yaml)
 library(dplyr)
 
 simulations <- expand.grid(
-  nr_items=c(5, 10, 20, 40),
+  nr_persons=c(50, 100, 200, 500, 1000),
+  nr_items=c(5, 10, 20, 40, 80),
   nr_dimensions=c(1, 2, 3),
-  nr_persons=c(50, 100, 200, 1000),
+  priors=c("TRUE", "FALSE"),
   model_type="2PL"
 )
 rownames(simulations) <- paste0("simulation", 1:nrow(simulations))
