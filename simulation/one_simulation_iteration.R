@@ -30,14 +30,15 @@ simulate_one_iteration <- function(
     priors = TRUE
   ) {
 
-  # Simulate person abilities (draw from normal distribution)
-  thetas <- (
-    rnorm(n = nr_persons * (nr_dimensions + 1), mean = 0, sd = 1) %>%
-      matrix(nrow = nr_persons, ncol = nr_dimensions + 1)
-  )
+  priors <- as.logical(priors)
 
+  # Simulate person abilities (draw from normal distribution)
+  thetas <- simulate_thetas(nr_persons, nr_dimensions)
+  
   # Simulate item easiness parameters (draw from normal distribution)
   deltas <- rnorm(n = nr_items, mean = 0, sd = 1)
+  deltas[deltas < -1.5] <- -1.5
+  deltas[deltas > 1.5] <- 1.5
   deltas <- -deltas * rnorm(nr_items, 1, .2)
 
   # Simulate item discrimination parameters (draw from gamma distribution)
@@ -64,7 +65,7 @@ simulate_one_iteration <- function(
 
   # Calculate differences between the estimated and true values.
   true_parameters <- cbind(alphas, deltas) %>% as.data.frame
-  names(true_parameters) <- c(paste0("a", 1:(nr_dimensions + 1)), "d")
+  names(true_parameters) <- c(paste0("a", 1:(ncol(true_parameters) - 1)), "d")
   estimated_parameters <- (
     coef(model, simplify = T)$items %>%
       as.data.frame() %>%
