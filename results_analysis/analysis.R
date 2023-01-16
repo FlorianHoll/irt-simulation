@@ -52,6 +52,27 @@ all_results %>%
     ci_upper = a_m + 1.96*a_se
   ) %>%
   ggplot(aes(x=nr_persons, y=a_m, col=as.factor(nr_items))) +
+    geom_hline(yintercept=0, linetype="dashed", size=1) +  
     geom_line(size=1) +
+    geom_ribbon(aes(x=nr_persons, ymin=ci_lower, ymax=ci_upper, fill=as.factor(nr_items)), alpha=.2) +
     # geom_smooth(se=FALSE) +
     geom_errorbar(aes(x=nr_persons, ymin=ci_lower, ymax=ci_upper), size=1)
+
+# plot deviation of discriminations as a function of the number of persons
+all_results %>%
+  group_by(nr_persons, nr_dimensions, nr_items) %>%
+  summarise(
+    a_m = mean(discrimination_deviations),
+    a_se = se(discrimination_deviations),
+    ci_lower = a_m - 1.96*a_se,
+    ci_upper = a_m + 1.96*a_se
+  ) %>%
+  ggplot(aes(x=nr_persons, y=a_m, col=as.factor(nr_dimensions))) +
+  geom_hline(yintercept=0, linetype="dashed", size=1) +  
+  geom_line(size=1) +
+  geom_ribbon(aes(x=nr_persons, ymin=ci_lower, ymax=ci_upper, fill=as.factor(nr_dimensions)), alpha=.2) +
+  # geom_smooth(se=FALSE) +
+  geom_errorbar(aes(x=nr_persons, ymin=ci_lower, ymax=ci_upper), size=1) +
+  facet_wrap(~nr_items)
+ 
+
