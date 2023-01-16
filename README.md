@@ -11,6 +11,16 @@ This simulation deals with uni- and multidimensional 2PL models.
 
 The goal is to **find out a minimal necessary sample size** to obtain sensible estimates for multidimensional 2PL IRT models, given some parameters.
 
+## Run the simulation
+The simulation is controlled with a `.yml` file in which each simulation is represented as a key and the parameters as values. For an exemplary .yml file, see `./configs/configs.yml`.
+The path of this .yml file needs to passed as an argument to the script `simulation.R`.
+
+Therefore, the simulation can be run using:
+
+```bash
+Rscript simulation.R configs/configs.yml
+```
+
 ## Parameters
 The parameters that can be manipulated in this simulation are:
 * Data parameters:
