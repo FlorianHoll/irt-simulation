@@ -6,10 +6,25 @@ The ultimate goal is to find out the minimal sample size that is necessary in or
 
 ## Goal
 Item Response Theory is a method to infer the latent traits or abilities of persons, given their reponse to closed-format
-questions. Item Response Theory can be seen as a factor analysis and as a type of Structural Equation Model.
-There are unidimensional (i.e. only one latent trait) and multidimensional (multiple latent traits) IRT models. Furthermore, one can choose between a 1PL model (the so-called "Rasch Model") or the 2PL model (the so-called "Birnbaum Model).
-This simulation deals with uni- and multidimensional 2PL models. The goal is to find out a minimal sample size that is 
-necessary in order to obtain sensible estimates for multidimensional 2PL IRT models.
+questions.
+This simulation deals with uni- and multidimensional 2PL models. 
+
+The goal is to **find out a minimal necessary sample size** to obtain sensible estimates for multidimensional 2PL IRT models, given some parameters.
+
+## Parameters
+The parameters that can be manipulated in this simulation are:
+* Data parameters:
+	* `nr_items`: The number of items that shall be calculated in the model.
+	* `nr_persons`: The number of persons whose responses shall be simulated.
+* Model parameters:
+	- `nr_dimensions`: The number of dimensions. If the model only has only one dimension, 
+	it is a unidimensional model. In all cases where `nr_dimensions > 1`, it is a multidimensional 
+	IRT model with a general factor (sometimes also called "G factor") that *all* items load onto and
+	`nr_dimensions` subfactors where each subfactors has some amount of items loading onto it.
+	- `priors`: Use priors for the parameter estimation or not. `mirt` has the ability to specify 
+	priors for each parameter.
+	- `model_type`: Either "Rasch" (1PL) or "2PL". The 1PL model is a 2PL model with the alpha parameter
+	(item discrimination) constrained to be 1 for all items.
 
 ## Logic of  the simulation
 The general logic of the simulation is as follows:
