@@ -49,8 +49,6 @@ simulate_one_iteration <- function(
   probabilities <- multidimensional_irt(alphas, deltas, thetas)
   simulated_data <- simulate_irt_data(probabilities)
 
-  print(table(simulated_data))
-  
   # Estimate the model.
   model_syntax <- create_model_syntax(
     nr_items, nr_dimensions, factor_loadings, priors
@@ -78,7 +76,7 @@ simulate_one_iteration <- function(
   )
   deviation <- estimated_parameters - true_parameters
   thetas_deviation <- estimated_thetas - thetas
-  colnames(thetas_deviation) <- column_names
+  # colnames(thetas_deviation) <- column_names
 
   # Store results as a list with parameters
   result <- list(

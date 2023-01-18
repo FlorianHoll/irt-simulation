@@ -6,7 +6,7 @@ library(doParallel)
 
 # Set up parallel backend to use many processors
 cores <- detectCores()
-cl <- makeCluster(cores[1] - 1)
+cl <- makeCluster(cores[1] - 1)  # leave one core available
 registerDoParallel(cl)
 
 # read arguments from the command line
@@ -22,10 +22,13 @@ params <- yaml::read_yaml(file = filename)
 run_from <- ifelse(is.na(run_from), 1, run_from)
 run_to <- ifelse(is.na(run_to), length(params), run_to)
 
+results_folder = paste0(
+  "./results/", gsub(":", "-", as.character(Sys.time()))
+)
+
 # start simulations in a parallelized for loop
 if (
-  !(foreach::getDoParRegistered()) | 
-  (foreach::getDoParWorkers() <= 1)
+  !(foreach::getDoParRegistered()) | (foreach::getDoParWorkers() <= 1)
 ) {
   warning("Only one CPU node is used.")
 }
@@ -39,8 +42,12 @@ for (simulation in names(params)[run_from : run_to]) {
   # Ensure that dimensions can be built with the number of items.
   if (parameters$nr_items >= (3 * parameters$nr_dimensions)) {
     
-    cat(paste("\n\nRunning", simulation, "with", nr_iterations, 
-      "iterations and the following parameters:\n"))
+    cat(
+      paste(
+        "\n\nRunning", simulation, "with", nr_iterations, 
+        "iterations and the following parameters:\n"
+      )
+    )
     cat(paste0(names(parameters), ": ", parameters, "; "))
 
     # run simulation
@@ -54,8 +61,8 @@ for (simulation in names(params)[run_from : run_to]) {
     )
     
     # save simulation results to results folder.
-    dir.create("./results")
-    filename <- paste0("./results/results_", simulation, ".Rds")
+    dir.create(results_folder)
+    filename <- paste0(results_folder, "/results_", simulation, ".Rds")
     saveRDS(final_results, file = filename)
   }
   
