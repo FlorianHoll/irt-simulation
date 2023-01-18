@@ -1,0 +1,64 @@
+simulation1:
+  params:
+    nr_persons: 200.0
+    nr_items: 40.0
+    nr_dimensions: 1.0
+    priors: 'TRUE'
+    model_type: 2PL
+  nr_iterations: 100.0
+simulation2:
+  params:
+    nr_persons: 300.0
+    nr_items: 40.0
+    nr_dimensions: 1.0
+    priors: 'TRUE'
+    model_type: 2PL
+  nr_iterations: 100.0
+simulation3:
+  params:
+    nr_persons: 200.0
+    nr_items: 40.0
+    nr_dimensions: 3.0
+    priors: 'TRUE'
+    model_type: 2PL
+  nr_iterations: 100.0
+simulation4:
+  params:
+    nr_persons: 300.0
+    nr_items: 40.0
+    nr_dimensions: 3.0
+    priors: 'TRUE'
+    model_type: 2PL
+  nr_iterations: 100.0
+simulation5:
+  params:
+    nr_persons: 200.0
+    nr_items: 40.0
+    nr_dimensions: 4.0
+    priors: 'TRUE'
+    model_type: 2PL
+  nr_iterations: 100.0
+simulation6:
+  params:
+    nr_persons: 300.0
+    nr_items: 40.0
+    nr_dimensions: 4.0
+    priors: 'TRUE'
+    model_type: 2PL
+  nr_iterations: 100.0
+simulation7:
+  params:
+    nr_persons: 200.0
+    nr_items: 40.0
+    nr_dimensions: 5.0
+    priors: 'TRUE'
+    model_type: 2PL
+  nr_iterations: 100.0
+simulation8:
+  params:
+    nr_persons: 300.0
+    nr_items: 40.0
+    nr_dimensions: 5.0
+    priors: 'TRUE'
+    model_type: 2PL
+  nr_iterations: 100.0

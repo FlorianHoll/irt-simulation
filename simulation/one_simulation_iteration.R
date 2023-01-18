@@ -49,8 +49,6 @@ simulate_one_iteration <- function(
   probabilities <- multidimensional_irt(alphas, deltas, thetas)
   simulated_data <- simulate_irt_data(probabilities)
 
-  print(table(simulated_data))
-  
   # Estimate the model.
   model_syntax <- create_model_syntax(
     nr_items, nr_dimensions, factor_loadings, priors
@@ -63,15 +61,22 @@ simulate_one_iteration <- function(
     method = estimation_algorithm
   )
 
+  # calculate f-scores (person abilities)
+  qmc <- ifelse(nr_dimensions > 1, TRUE, FALSE)
+  estimated_thetas <- mirt::fscores(model, QMC = qmc)
+
   # Calculate differences between the estimated and true values.
   true_parameters <- cbind(alphas, deltas) %>% as.data.frame
-  names(true_parameters) <- c(paste0("a", 1:(ncol(true_parameters) - 1)), "d")
+  column_names <- c(paste0("a", 1:(ncol(true_parameters) - 1)), "d")
+  names(true_parameters) <- column_names
   estimated_parameters <- (
     coef(model, simplify = T)$items %>%
       as.data.frame() %>%
       select(-g, -u)
   )
   deviation <- estimated_parameters - true_parameters
+  thetas_deviation <- estimated_thetas - thetas
+  # colnames(thetas_deviation) <- column_names
 
   # Store results as a list with parameters
   result <- list(
@@ -79,11 +84,13 @@ simulate_one_iteration <- function(
       nr_persons = nr_persons,
       nr_items = nr_items,
       nr_dimensions = nr_dimensions,
-      model_type = model_type
+      model_type = model_type,
+      priors = priors
     ),
     true_parameters = true_parameters,
     estimated_parameters = estimated_parameters,
-    deviation = deviation
+    deviation = deviation,
+    thetas_deviation = thetas_deviation
   )
 
   return(result)
